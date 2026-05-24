@@ -73,7 +73,7 @@ export default function ProjectsPage() {
     }
   };
 
-  // EDIT shuru - form ko project ki current values se bharo
+  // EDIT
   const startEdit = (p) => {
     setEditingId(p._id);
     setEditForm({
@@ -94,7 +94,7 @@ export default function ProjectsPage() {
     }));
   };
 
-  // EDIT save - naam, description, members update
+  // EDIT save - name, description, members update
   const saveEdit = async (projectId) => {
     setError("");
     try {
@@ -103,7 +103,7 @@ export default function ProjectsPage() {
         description: editForm.description,
         members: editForm.members,
       });
-      // re-fetch taaki member names sahi se aayein (populate)
+    
       setEditingId(null);
       load();
     } catch (err) {
@@ -164,7 +164,7 @@ export default function ProjectsPage() {
           <div className="card empty">No projects yet.</div>
         ) : (
           projects.map((p) => {
-            // EDIT mode - form dikhao (Admin only)
+           
             if (editingId === p._id && user?.role === "Admin") {
               return (
                 <div className="card" key={p._id} style={{ marginBottom: 10 }}>

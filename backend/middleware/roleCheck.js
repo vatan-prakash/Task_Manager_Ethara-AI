@@ -1,5 +1,4 @@
-// Sirf Admin ko allow karne wala middleware
-// protect ke baad use hota hai (req.user available hota hai)
+// can only allow Admin :middleware
 const adminOnly = (req, res, next) => {
   if (req.user && req.user.role === "Admin") {
     return next();

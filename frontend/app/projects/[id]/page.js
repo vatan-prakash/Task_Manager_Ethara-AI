@@ -65,7 +65,7 @@ export default function ProjectDetail() {
     }
   };
 
-  // SPEED FIX: optimistic update - screen turant badlo, background mein save
+
   const changeStatus = async (taskId, status) => {
     setTasks((prev) =>
       prev.map((t) => (t._id === taskId ? { ...t, status } : t))
@@ -74,24 +74,24 @@ export default function ProjectDetail() {
       await api.updateTask(taskId, { status });
     } catch (err) {
       setError(err.message);
-      load(); // fail hua to asli data wapas le aao
+      load(); 
     }
   };
 
   const deleteTask = async (taskId) => {
     if (!confirm("Delete this task?")) return;
-    // optimistic: turant list se hatao
+  
     const backup = tasks;
     setTasks((prev) => prev.filter((t) => t._id !== taskId));
     try {
       await api.deleteTask(taskId);
     } catch (err) {
       setError(err.message);
-      setTasks(backup); // fail hua to wapas
+      setTasks(backup); 
     }
   };
 
-  // EDIT shuru karo - form ko us task ki current values se bharo
+  
   const startEdit = (t) => {
     setEditingId(t._id);
     setEditForm({
@@ -116,7 +116,7 @@ export default function ProjectDetail() {
         assignedTo: editForm.assignedTo || null,
         dueDate: editForm.dueDate || null,
       });
-      // optimistic: list mein us task ko updated se replace karo
+   
       setTasks((prev) => prev.map((t) => (t._id === taskId ? updated : t)));
       setEditingId(null);
     } catch (err) {
@@ -190,7 +190,6 @@ export default function ProjectDetail() {
               user?.role === "Admin" ||
               (t.assignedTo && t.assignedTo._id === user?.id);
 
-            // AGAR yeh task edit mode mein hai -> form dikhao (Admin only)
             if (editingId === t._id && user?.role === "Admin") {
               return (
                 <div className="card" key={t._id} style={{ marginBottom: 10 }}>

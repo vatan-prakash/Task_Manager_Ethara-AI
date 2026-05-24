@@ -36,11 +36,11 @@ export default function Dashboard() {
   }, [router]);
 
   const changeStatus = async (id, status) => {
-    // optimistic: turant UI badlo
+    
     setTasks((prev) => prev.map((t) => (t._id === id ? { ...t, status } : t)));
     try {
       await api.updateTask(id, { status });
-      // stats refresh karo (overdue/done counts badle honge) - background mein
+      // stats refresh  (overdue/done counts will change) - at background 
       api.dashboard().then(setStats).catch(() => {});
     } catch (err) {
       setError(err.message);

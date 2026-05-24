@@ -3,11 +3,11 @@ const jwt = require("jsonwebtoken");
 const { validationResult } = require("express-validator");
 const User = require("../models/User");
 
-// JWT token banane ka helper
+// JWT token 
 const genToken = (id) =>
   jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: "7d" });
 
-// @route  POST /api/auth/signup
+//  POST /api/auth/signup
 exports.signup = async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -40,7 +40,7 @@ exports.signup = async (req, res) => {
   }
 };
 
-// @route  POST /api/auth/login
+// POST /api/auth/login
 exports.login = async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -69,12 +69,12 @@ exports.login = async (req, res) => {
   }
 };
 
-// @route  GET /api/auth/me  (logged-in user info)
+//  GET /api/auth/me  (logged-in user info)
 exports.getMe = async (req, res) => {
   res.json(req.user);
 };
 
-// @route  GET /api/auth/users  (sabhi users - members add karne ke liye)
+//   GET /api/auth/users  (to add members)
 exports.getUsers = async (req, res) => {
   try {
     const users = await User.find().select("-password");

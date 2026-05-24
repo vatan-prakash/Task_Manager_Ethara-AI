@@ -35,12 +35,12 @@ exports.createTask = async (req, res) => {
 };
 
 // @route  GET /api/tasks
-// Admin -> apne projects ke saare tasks ; Member -> sirf apne assigned tasks
+// Admin -> all tasks  of project; Member ->only assigned tasks
 exports.getTasks = async (req, res) => {
   try {
     let tasks;
     if (req.user.role === "Admin") {
-      // admin ke projects nikaalo
+      // find admin projects
       const myProjects = await Project.find({ owner: req.user._id }).select("_id");
       const ids = myProjects.map((p) => p._id);
       tasks = await Task.find({ project: { $in: ids } })
@@ -70,8 +70,8 @@ exports.getTasksByProject = async (req, res) => {
 };
 
 // @route  PUT /api/tasks/:id
-// Member -> sirf status update kar sakta hai (apne task ka)
-// Admin  -> kuch bhi update kar sakta hai
+// Member -> can only update status of its assigned tasks
+// Admin  -> can update anything
 exports.updateTask = async (req, res) => {
   try {
     const task = await Task.findById(req.params.id);
@@ -86,7 +86,7 @@ exports.updateTask = async (req, res) => {
       if (status !== undefined) task.status = status;
       if (dueDate !== undefined) task.dueDate = dueDate;
     } else {
-      // Member: sirf apne hi task ka status badal sakta hai
+      // Member: can only update its assgined task status
       if (!task.assignedTo || task.assignedTo.toString() !== req.user._id.toString()) {
         return res.status(403).json({ message: "You can only update your own tasks" });
       }

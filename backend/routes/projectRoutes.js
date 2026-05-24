@@ -11,7 +11,7 @@ const {
   deleteProject,
 } = require("../controllers/projectController");
 
-// sab routes protected hain (login zaroori)
+// all routes are protected  
 router.use(protect);
 
 router

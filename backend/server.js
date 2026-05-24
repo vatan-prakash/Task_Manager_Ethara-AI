@@ -10,7 +10,7 @@ connectDB();
 app.use(cors({ origin: "*" }));
 app.use(express.json());
 
-// 👇 YEH 3 LINES zaroori hain - inke bina 404 aayega!
+
 app.use("/api/auth", require("./routes/authRoutes"));
 app.use("/api/projects", require("./routes/projectRoutes"));
 app.use("/api/tasks", require("./routes/taskRoutes"));

@@ -26,7 +26,7 @@ exports.createProject = async (req, res) => {
 };
 
 // @route  GET /api/projects
-// Admin -> apne banaye projects ; Member -> jisme wo member hai
+// Admin -> can add projects ; Member -> assigned porjects by admin
 exports.getProjects = async (req, res) => {
   try {
     let projects;
