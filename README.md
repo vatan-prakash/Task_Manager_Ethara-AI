@@ -1,4 +1,4 @@
-# 📋 Team Task Manager (Full-Stack)
+#📋 Team Task Manager (Full-Stack)
 Live Deployment: ideal-passion-production-605f.up.railway.app
 Loom Video : https://www.loom.com/share/d4583ad201b54385a730f0a6b0dde4c2
 A web app where users can create projects, assign tasks, and track progress with **role-based access (Admin / Member)**.
@@ -17,7 +17,7 @@ A web app where users can create projects, assign tasks, and track progress with
 - **Dashboard** — total tasks, count by status, and **overdue** tasks
 - **Role-based access control** enforced on the backend (not just hidden in UI)
 
----
+--
 
 ## 📁 Folder Structure
 
